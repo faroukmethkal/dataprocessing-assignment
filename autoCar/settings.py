@@ -27,7 +27,7 @@ SECRET_KEY = '%v(dab(l8(tmp=$g^$%)qrp1mudtlcgao8(-8ad$+c2pf_i@cw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['auto-car.herokuapp.com']
 
 
 # Application definition
