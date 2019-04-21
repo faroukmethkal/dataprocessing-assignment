@@ -8,12 +8,10 @@ from django.conf.urls import url
 from map.views import ChartEyeTraking, SpeedView, ChartSpeed, HomeView
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from dataprocessing.map.views import LayerView, OpenLayer
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/',map.views.index, name='index'),
-    # path('showmap/', map.views.showmap, name='showmap'),
+    path('showmap/', map.views.showmap, name='showmap'),
     path('eyetracking/', map.views.eye_tracking, name='eyetracking'),
 
     url(r'^$', HomeView.as_view(), name='home'),
@@ -22,9 +20,6 @@ urlpatterns = [
 
     url(r'^speed/$', SpeedView.as_view(), name='speed'),
     url(r'^api/speed/data/$', ChartSpeed.as_view()),
-
-    url(r'^showmap/$', LayerView.as_view(), name='showmap'),
-    url(r'^api/showmap/data/$', OpenLayer.as_view()),
 
  ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

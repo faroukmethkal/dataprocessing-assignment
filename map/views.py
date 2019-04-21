@@ -38,6 +38,7 @@ class ChartEyeTraking(APIView):
 
     def get(self, request):
         eyetracking = EyeTracking.objects.select_related('loc_id').all()
+        # print(eyetracking[0].loc_id.lat, eyetracking[0].loc_id.lon)
         for eye in eyetracking:
             print(eye.loc_id.lat, eye.loc_id.lon)
         serializers = EyeTrackingSerializer(eyetracking, many=True)
@@ -58,19 +59,7 @@ class ChartSpeed(APIView):
         serializers = SpeedLimitsSerializer(speed, many=True)
         return Response(serializers.data)
 
-class LayerView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'map/showmap.html', {})
 
-
-class OpenLayer(APIView):
-    authentication_classes = []
-    permission_classes = []
-
-    def get(self, request):
-        speed = Locations.objects.all()
-        serializers = LocationsSerializer(speed, many=True)
-        return Response(serializers.data)
 
 
 
