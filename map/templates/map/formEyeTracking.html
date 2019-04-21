@@ -4,34 +4,16 @@
 
 {% block content %}
 
-<h1>Add Value</h1>
+    <h1>Add Value</h1>
 <div class="container">
+<div>
 
-    <div class="row">
-        <div class="col-lg-4">
-            <form method="POST">{% csrf_token %}
-            {{ form.as_p }}
+</div>
+    <form method="POST">{% csrf_token %}
+      {{ form.as_p }}
 
-            <input type="submit" value="Save"/>
-        </form>
-        </div>
-
-    </div>
-    <p>---------------------------------</p>
-<h2>Add locations</h2>
-    <div class="row">
-        <div class="col-lg-4">
-
-            <form method="POST">{% csrf_token %}
-                {{ form1.as_p }}
-
-                <input type="submit" value="Save"/>
-            </form>
-        </div>
-
-
-    </div>
-
+    <input type="submit" value="Save"/>
+    </form>
 </div>
 {% endblock %}
 

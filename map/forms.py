@@ -1,5 +1,5 @@
 from django import forms
-from .models import EyeTracking, Locations
+from .models import EyeTracking
 
 
 class EyeTrackingForm(forms.ModelForm):
@@ -9,17 +9,4 @@ class EyeTrackingForm(forms.ModelForm):
             'loc_id',
             'x',
             'y'
-        ]
-
-class LocationForm(forms.ModelForm):
-    class Meta:
-        model = Locations
-        fields = [
-            'name',
-            'lat',
-            'lon',
-            'speed',
-            'time'
-
-
         ]
