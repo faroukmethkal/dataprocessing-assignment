@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import django_heroku
+import psycopg2
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -77,17 +78,17 @@ WSGI_APPLICATION = 'autoCar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-                'default': {
-                    'ENGINE': 'django.db.backends.postgresql',
-                    'NAME': 'autoCar',
-                    'USER': 'postgres',
-                    'PASSWORD': 'farouq12',
-                    'HOST': 'localhost',
-                    'PORT': '5432',
-                }
+DATABASES =  DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+                # 'default': {
+                #     'ENGINE': 'django.db.backends.postgresql',
+                #     'NAME': 'autoCar',
+                #     'USER': 'postgres',
+                #     'PASSWORD': 'farouq12',
+                #     'HOST': 'localhost',
+                #     'PORT': '5432',
+                # }
 
-}
 
 
 # Password validation
