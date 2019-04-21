@@ -123,7 +123,7 @@ STATICFILES_DIRS = [
  os.path.join(BASE_DIR, 'autoCar/static/')
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
+# 'static_cdn', 
 django_heroku.settings(locals())
