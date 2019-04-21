@@ -4,7 +4,7 @@ from .models import Locations, SpeedLimits, EyeTracking
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializer import EyeTrackingSerializer, LocationsSerializer, SpeedLimitsSerializer
-from .forms import EyeTrackingForm
+from .forms import EyeTrackingForm, LocationsForm, SpeedLimitsForm
 
 
 def index(request):
@@ -26,6 +26,25 @@ def eye_tracking(request):
     }
     return render(request, 'map/formEyeTracking.html', context)
 
+def locatonForm(request):
+    form = LocationsForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = LocationsForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'map/locationsForm.html', context)
+
+def limitForm(request):
+    form = SpeedLimitsForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = SpeedLimitsForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'map/limitForms.html', context)
 
 class HomeView(View):
     def get(self, request, *args, **kwargs):

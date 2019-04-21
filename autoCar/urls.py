@@ -13,6 +13,8 @@ urlpatterns = [
     path('index/',map.views.index, name='index'),
     path('showmap/', map.views.showmap, name='showmap'),
     path('eyetracking/', map.views.eye_tracking, name='eyetracking'),
+    path('locatonForm/', map.views.locatonForm, name='locatonForm'),
+    path('limitForm/', map.views.limitForm, name='limitForm'),
 
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^api/chart/data/$', ChartEyeTraking.as_view()),
