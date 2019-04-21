@@ -4,7 +4,7 @@ from .models import Locations, SpeedLimits, EyeTracking
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializer import EyeTrackingSerializer, LocationsSerializer, SpeedLimitsSerializer
-from .forms import EyeTrackingForm
+from .forms import EyeTrackingForm, LocationForm
 
 
 def index(request):
@@ -18,11 +18,16 @@ def showmap(request):
 
 def eye_tracking(request):
     form = EyeTrackingForm(request.POST or None)
+    form1 = LocationForm(request.POST or None)
     if form.is_valid():
         form.save()
         form = EyeTrackingForm()
+
+        form1.save()
+        form1 = LocationForm()
     context = {
         'form': form,
+        'form1':form1
     }
     return render(request, 'map/formEyeTracking.html', context)
 
