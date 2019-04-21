@@ -6,24 +6,31 @@
 
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'locatonForm' %}">Add Location</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'limitForm' %}">Add Limit</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'eyetracking' %}">Add value</a>
+
+            </li>
+
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'home' %}">Out of Focus <span class="sr-only">(current)</span></a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'speed' %}">Validation</a>
             </li>
-            <li class="nav-item">
+
+
+             <li class="nav-item">
                 <a class="nav-link" href="{% url 'showmap' %}">Map</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'eyetracking' %}">Add value</a>
 
-            </li> <li class="nav-item">
-                <a class="nav-link" href="{% url 'locatonForm' %}">Add Location</a>
-            </li></li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'limitForm' %}">Add Limit</a>
-            </li>
 
 
         </ul>
