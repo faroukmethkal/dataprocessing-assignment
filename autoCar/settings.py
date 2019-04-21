@@ -9,12 +9,9 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
+import django_heroku
 
 import os
-import django_heroku
-import psycopg2
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,7 +25,7 @@ SECRET_KEY = '%v(dab(l8(tmp=$g^$%)qrp1mudtlcgao8(-8ad$+c2pf_i@cw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['auto-car.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -78,18 +75,14 @@ WSGI_APPLICATION = 'autoCar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES =  DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-                # 'default': {
-                #     'ENGINE': 'django.db.backends.postgresql',
-                #     'NAME': 'autoCar',
-                #     'USER': 'postgres',
-                #     'PASSWORD': 'farouq12',
-                #     'HOST': 'localhost',
-                #     'PORT': '5432',
-                # }
 
-
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_DIR, 'yourdatabasename.db'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -130,9 +123,7 @@ STATICFILES_DIRS = [
  os.path.join(BASE_DIR, 'autoCar/static/')
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 STATIC_URL = '/static/'
 
-
-# Activate Django-Heroku.
 django_heroku.settings(locals())
