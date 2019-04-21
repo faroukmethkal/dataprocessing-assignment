@@ -1,0 +1,85 @@
+{% extends 'map/base.html' %}
+<script>
+
+
+</script>
+{% block content %}
+    {% load static %}
+    <h1>Speed Limit </h1>
+  <div class="form-container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Validation</h2>
+                <canvas id="myChart"></canvas>
+
+            </div>
+    </div>
+
+    <script>
+        var chart = null;
+        var defaultData = [];
+        var endpoint = '/api/speed/data/';
+        $.ajax({
+            method: "GET",
+            url: endpoint,
+            success: function (data) {
+                defaultData = data;
+                console.log(defaultData)
+                setChart(defaultData);
+            },
+            error: function (error_data) {
+                console.log("error");
+                console.log(error_data)
+            }
+        });
+
+        function setChart(data) {
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var i;
+
+             let label_Speed = [];
+             let data_time = [];
+             let data_limit = [];
+            for(let i = 0; i< data.length; i++){
+                 label_Speed.push(data[i].loc_id.speed);
+                 data_time.push(data[i].loc_id.time);
+                 data_limit.push(data[i].limit)
+
+            }
+            console.log(label_Speed)
+            console.log(data_time)
+            console.log(data_limit)
+
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data_time,
+                    datasets: [
+                        {
+                            label: 'Speed',
+                            backgroundColor: ['rgba(0, 0, 0, 0.2)'],
+                             borderColor: ['rgb(192, 57, 43 )'],
+                            data: label_Speed
+                        },
+                         {
+                            label: 'Speed_Limit',
+                            backgroundColor: ['rgba(0, 0, 0, 0.2)'],
+                             borderColor: ['rgb(26, 188, 156 )'],
+                            data: data_limit
+
+                        },
+
+
+                    ]
+                },
+                options: {}
+            });
+
+        }
+
+    </script>
+
+
+{% endblock %}

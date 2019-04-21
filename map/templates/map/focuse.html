@@ -1,0 +1,42 @@
+
+{% extends 'map/base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <canvas id="myChart"></canvas>
+</div>
+
+
+        <script>
+
+                    var ctx = document.getElementById('myChart').getContext('2d');
+
+                    var i;
+                    for (i = 0; i<locationData.speedR.length; i++){
+
+                         var chart = new Chart(ctx, {
+
+                         type: 'line',
+
+                       data: {
+                            labels: ['kl:3.00', 'kl:4.00', 'kl:5.00', 'kl:6.00', 'kl:7.00'],
+
+                            datasets: [{
+                            label: 'My First dataset',
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            data: [ locationData.speedR[i], locationData.speedL[i],]
+                        }]
+                    },
+
+                    // Configuration options go here
+                    options: {}
+                });
+                    }
+
+
+        </script>
+
+{% endblock %}

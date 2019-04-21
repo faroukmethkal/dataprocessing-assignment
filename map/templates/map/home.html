@@ -1,0 +1,112 @@
+{% extends 'map/base.html' %}
+
+{% block content %}
+    {% load static %}
+
+    <div class="container">
+        <h1>Out of focus</h1>
+        <div class="row">
+            <div class="col-sm">
+                <h2>Horizontal focus</h2>
+                <canvas id="myChart"></canvas>
+                <h4>Values above 5 and -5 is showing the driver is Out of focus </h4>
+
+
+            </div>
+
+            <div class="col-sm">
+                <h2>Vertical focus</h2>
+                <canvas id="myChart1"></canvas>
+                <h4>Values above 5 and -5 is showing the driver is Out of focus </h4>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var chart = null;
+        var defaultData = [];
+        var endpoint = '/api/chart/data';
+        $.ajax({
+            method: "GET",
+            url: endpoint,
+            success: function (data) {
+                defaultData = data;
+                console.log(defaultData)
+                setChart(defaultData);
+            },
+            error: function (error_data) {
+                console.log("error");
+                console.log(error_data)
+            }
+        });
+function setChart(data) {
+
+       var ctx = document.getElementById('myChart').getContext('2d');
+       var ctx_2 = document.getElementById('myChart1').getContext('2d');
+
+console.log(data)
+        var i;
+
+            let label_x = [];
+            let data_y = [];
+            let data_time = [];
+            for(let i = 0; i< data.length; i++){
+                label_x.push(data[i].x);
+                data_y.push(data[i].y);
+                data_time.push(data[i].loc_id.time);
+
+            }
+            console.log(label_x)
+            console.log(data_y)
+
+        chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data_time,
+                datasets: [
+                    {
+                        label: 'My First dataset',
+                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(26, 99, 132)', 'rgb(98, 99, 132)', 'rgb(17, 99, 132)'],
+                        borderColor: ['rgb(255, 99, 132)', 'rgb(127, 99, 132)', 'rgb(127, 99, 132)', 'rgb(127, 99, 132)'],
+                        data: label_x,
+                    },
+                    {
+                        label: 'My second dataset',
+                        backgroundColor: 'rgb(127, 99, 132)',
+                        borderColor: 'rgb(127, 99, 132)',
+                        data: []
+                    }
+                ]
+            },
+            options: {}
+        });
+
+     chart = new Chart(ctx_2, {
+            type: 'line',
+            data: {
+                labels: data_time,
+                datasets: [
+                    {
+                        label: 'My First dataset',
+                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(26, 99, 132)', 'rgb(98, 99, 132)', 'rgb(17, 99, 132)'],
+                        borderColor: ['rgb(255, 99, 132)', 'rgb(127, 99, 132)', 'rgb(127, 99, 132)', 'rgb(127, 99, 132)'],
+                        data: data_y,
+                    },
+                    {
+                        label: 'My second dataset',
+                        backgroundColor: 'rgb(127, 99, 132)',
+                        borderColor: 'rgb(127, 99, 132)',
+                        data: []
+                    }
+                ]
+            },
+            options: {}
+        });
+
+}
+
+    </script>
+
+
+{% endblock %}
