@@ -1,1 +1,1 @@
-web: gunicorn dataprocessing.wsgi
+web: gunicorn heroku.wsgi
