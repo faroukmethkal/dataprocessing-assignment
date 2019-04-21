@@ -25,7 +25,7 @@ SECRET_KEY = '%v(dab(l8(tmp=$g^$%)qrp1mudtlcgao8(-8ad$+c2pf_i@cw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dataprocessing.herokuapp.com']
 
 
 # Application definition
@@ -123,7 +123,7 @@ STATICFILES_DIRS = [
  os.path.join(BASE_DIR, 'autoCar/static/')
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
 STATIC_URL = '/static/'
 
 django_heroku.settings(locals())
